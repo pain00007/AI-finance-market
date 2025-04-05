@@ -64,50 +64,5 @@ def news_sentiment():
             description = article.get("description") or "No description provided."
             url = article.get("url", "#")
             image_url = article.get("urlToImage")
-            source = article.get("source", {}).get("name", "Unknown Source")
-            date = article.get("publishedAt", "")[:10]
-
-            polarity = TextBlob(title).sentiment.polarity
-            label = get_sentiment_label(polarity)
-
-            sentiments.append(polarity)
-            sentiment_labels.append(label)
-
-            st.markdown(f"### {title}")
-            st.caption(f"{source} | Published: {date}")
-            if image_url:
-                st.image(image_url, width=300)
-            st.write(description)
-            st.markdown(f"[🔗 Read more]({url})")
-            st.markdown(f"**Sentiment:** {label} _(Polarity: {polarity:.2f})_")
-            st.markdown("---")
-    else:
-        st.warning("No news articles available.")
-
-    # 📊 Overall Sentiment Summary
-    st.subheader("📊 Overall Sentiment of Headlines")
-
-    if sentiments:
-        avg_polarity = sum(sentiments) / len(sentiments)
-        overall_label = get_sentiment_label(avg_polarity)
-
-        st.metric("Average Polarity", f"{avg_polarity:.2f}", help="Mean sentiment polarity across top 10 articles")
-        st.markdown(f"**Overall Sentiment:** {overall_label}")
-
-        # Summary counts
-        label_counts = Counter(sentiment_labels)
-        col1, col2, col3 = st.columns(3)
-        col1.metric("🟢 Positive", label_counts.get("🟢 Positive", 0))
-        col2.metric("🟡 Neutral", label_counts.get("🟡 Neutral", 0))
-        col3.metric("🔴 Negative", label_counts.get("🔴 Negative", 0))
-
-        # Sentiment chart
-        st.bar_chart(pd.Series(sentiments, name="Headline Sentiment"))
-        st.caption("Note: Polarity ranges from -1 (very negative) to +1 (very positive).")
-
-    else:
-        st.info("No valid headlines to compute sentiment.")
-
-if __name__ == "__main__":
-    news_sentiment()
+            source = article.get("
 
