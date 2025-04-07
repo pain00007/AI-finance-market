@@ -60,7 +60,7 @@ def load_sentiment_model():
 
 
 def fetch_news_headlines(ticker, limit=10):
-    api_key = "6f15cf7de3414430b24b88e64828f3ba"
+    api_key = "cvpota9r01qve7iqb6qgcvpota9r01qve7iqb6r0"
     url = f"https://newsapi.org/v2/everything?q={ticker}&language=en&pageSize={limit}&apiKey={api_key}"
     response = requests.get(url)
     if response.status_code == 200:
